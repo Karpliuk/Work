@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e8a78702-69de-4dfa-945b-3ae0f3f0fb47" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.1.251/SilabIntegration/ResultService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ResultService.wsdl" MetadataType="Wsdl" ID="8958a4c9-bf60-4875-bab7-0ed5eeec6d24" SourceId="1" SourceUrl="http://192.168.1.251/SilabIntegration/ResultService.svc?wsdl" />
+    <MetadataFile FileName="ResultService.disco" MetadataType="Disco" ID="72086c49-d169-4d48-b424-41d588d8d2e7" SourceId="1" SourceUrl="http://192.168.1.251/SilabIntegration/ResultService.svc?disco" />
+    <MetadataFile FileName="ResultService.xsd" MetadataType="Schema" ID="3925766a-9ee3-4bba-9aa2-a9b19f17ec46" SourceId="1" SourceUrl="http://192.168.1.251/SilabIntegration/ResultService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ResultService1.xsd" MetadataType="Schema" ID="c18db3c6-0fea-443d-8f0e-a49dea26c698" SourceId="1" SourceUrl="http://192.168.1.251/SilabIntegration/ResultService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ResultService2.xsd" MetadataType="Schema" ID="df8fe61f-7633-4f9e-8927-b53818d1b6c7" SourceId="1" SourceUrl="http://192.168.1.251/SilabIntegration/ResultService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

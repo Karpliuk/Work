@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://synevo.ua/integration/silab" elementFormDefault="qualified" targetNamespace="http://synevo.ua/integration/silab" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.1.251/SilabIntegration/ResultService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Synevo.Data.Dto" />
+  <xs:element name="GetResultSummary">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="orderId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetResultSummaryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Synevo.Data.Dto" minOccurs="0" name="GetResultSummaryResult" nillable="true" type="q1:OrderResultSummaryDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetResultSummaryByWebCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="webAccessCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetResultSummaryByWebCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Synevo.Data.Dto" minOccurs="0" name="GetResultSummaryByWebCodeResult" nillable="true" type="q2:OrderResultSummaryDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

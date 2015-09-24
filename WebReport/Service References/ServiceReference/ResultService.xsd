@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Synevo.Data.Dto" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Synevo.Data.Dto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="OrderResultSummaryDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Barcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsFinal" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OrderId" type="xs:long" />
+      <xs:element minOccurs="0" name="ReportName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Results" nillable="true" type="tns:ArrayOfOrderResultDetailDto" />
+      <xs:element minOccurs="0" name="ResultsDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SiteName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderResultSummaryDto" nillable="true" type="tns:OrderResultSummaryDto" />
+  <xs:complexType name="ArrayOfOrderResultDetailDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderResultDetailDto" nillable="true" type="tns:OrderResultDetailDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderResultDetailDto" nillable="true" type="tns:ArrayOfOrderResultDetailDto" />
+  <xs:complexType name="OrderResultDetailDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FolderName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PdfName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceCd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceId" type="xs:long" />
+      <xs:element minOccurs="0" name="ServiceUri" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="tns:OrderResultType" />
+      <xs:element minOccurs="0" name="ValidatorEmail" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderResultDetailDto" nillable="true" type="tns:OrderResultDetailDto" />
+  <xs:simpleType name="OrderResultType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SilabMainResult" />
+      <xs:enumeration value="SilabMicroResult" />
+      <xs:enumeration value="ExtraAttachment" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="OrderResultType" nillable="true" type="tns:OrderResultType" />
+</xs:schema>

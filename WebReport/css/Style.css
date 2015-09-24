@@ -1,0 +1,104 @@
+﻿body {   
+	 background-color: #FAFAFA;      
+}
+ .container
+{
+	width:99%;
+	border-radius:10px;
+	color:#04529d;
+	font-family: Helvetica, Arial, sans-serif;
+	margin-top: 10px;
+	background-repeat: repeat-x;	
+	background-image: url(http://www.synevo.ua/templates/synevo/synevo/public/css/images/bg_rezult_online.png);
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	background: linear-gradient(to top, #b3d3ec, #e2f0fb);           
+}
+ #Label1 {
+	 font-size:18px;  
+ }
+ #Label1 span
+ {
+	 display:inline-block;
+	 white-space:nowrap;
+     -moz-text-align-last: right; /* Code for Firefox */
+     text-align-last: justify;
+ }
+ #Label2 {
+	 font-size:16px; 
+      float:left;    
+ }
+ #WarningMessage {
+    font-weight: bold;
+    font-size: 18px;
+    color: orangered;
+}
+ #BtnGetResult {
+	background-color: transparent !important;
+	border: 0 !important;
+	min-width: 300px !important;
+ }
+ #BtnGetResult {
+	width: 300px;
+	height: 40px;
+	padding: 8px 14px 5px 55px;
+	border-radius: 10px;
+	color: #04529d;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 18px;
+	background-color: #ffb824;
+	background: linear-gradient(to top, #faba01, #ffe696);
+	background-position: 4px 0px;
+	background-repeat: no-repeat;	
+	background-image: url(../img/list-results-online.png);
+	cursor: pointer;
+	outline: none;
+ }
+ #Image1
+ {
+	 padding-top:30px;
+	 float:right;
+	 padding-right:30px;
+ }
+ #HyperLink1{
+	 font-size:13px;
+	 font-family:Arial;
+	 color: #000;
+	 font:  bold;
+ }
+ #WebAccessCodeTextBox {
+	height: 21px;
+	width: 128px;
+	border-radius: 0;
+	border: 1px solid #ccc;
+	background: #fff;
+	box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	margin-top: 3px;
+	margin-bottom: 15px;
+ }
+ #ErrorLabel{
+	  font-size:16px; 
+	  font-family: Helvetica, Arial, sans-serif;
+ }
+ #StatusLabel {
+	  font-weight: bold;
+	  line-height: 1.6;
+	  font-size:16px;  
+ }
+ #ResultPDFLabel, #ResultPDFMicroLabel, #ResultPDFExtraAttachmentLabel, #ResultAll {
+	 font-size:16px; 
+ }
+ #PanelResult {
+	 background: none !important;
+	 border: none !important;
+ }
+ .auto-style1 {
+	 position: relative;
+	 min-height: 1px;
+	 float: left;
+	 width: 25%;
+	 left: 0px;
+	 top: 0px;
+	 padding-left: 15px;
+	 padding-right: 15px;
+ }
