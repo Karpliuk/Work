@@ -127,10 +127,34 @@
     <value>Скачать</value>
   </data>
   <data name="ButtonToolTip" xml:space="preserve">
-    <value>Сохранить</value>
+    <value>Сохранить как PDF</value>
+  </data>
+  <data name="ErrorDownloadResultLabel" xml:space="preserve">
+    <value>Результаты отсутствуют</value>
   </data>
   <data name="ErrorLabelText" xml:space="preserve">
     <value>Введите код для &lt;br&gt; доступа</value>
+  </data>
+  <data name="ExtraAttachmentExportButton" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="ImageButtonFirstPage" xml:space="preserve">
+    <value>Перейти к первой странице</value>
+  </data>
+  <data name="ImageButtonLastPage" xml:space="preserve">
+    <value>Перейти к последней странице</value>
+  </data>
+  <data name="ImageButtonNext" xml:space="preserve">
+    <value>Перейти к следующей странице</value>
+  </data>
+  <data name="ImageButtonPrev" xml:space="preserve">
+    <value>Перейти к предыдущей странице </value>
+  </data>
+  <data name="ImageButtonZoomInToolTip" xml:space="preserve">
+    <value>Увеличить</value>
+  </data>
+  <data name="ImageButtonZoomOutToolTip" xml:space="preserve">
+    <value>Уменьшить</value>
   </data>
   <data name="LabelCode" xml:space="preserve">
     <value>&lt;strong&gt;Код для доступа&lt;/strong&gt;&lt;br&gt;&lt;span&gt;к&amp;nbsp;веб-результатам:&lt;/span&gt;</value>
@@ -145,13 +169,13 @@
     <value>Скачать все результаты в виде zip-файла:</value>
   </data>
   <data name="ResultPDFExtraAttachmentLabelText" xml:space="preserve">
-    <value>Скачать дополнительные результаты:</value>
+    <value>Дополнительные</value>
   </data>
   <data name="ResultPDFLabelText" xml:space="preserve">
-    <value>Сохранить результат как PDF:</value>
+    <value>Результаты заказа</value>
   </data>
   <data name="ResultPDFMicroLabelText" xml:space="preserve">
-    <value>Сохранить результат микробиологии как PDF:</value>
+    <value>Микробиология</value>
   </data>
   <data name="StatusLabelExeption" xml:space="preserve">
     <value>Отсутствует связь с лабораторией, попробуйте позже</value>

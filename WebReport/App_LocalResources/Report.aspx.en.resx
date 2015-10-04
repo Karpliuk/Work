@@ -127,10 +127,34 @@
     <value>Download</value>
   </data>
   <data name="ButtonToolTip" xml:space="preserve">
-    <value>Save</value>
+    <value>Save as PDF</value>
+  </data>
+  <data name="ErrorDownloadResultLabel" xml:space="preserve">
+    <value>There are no results</value>
   </data>
   <data name="ErrorLabelText" xml:space="preserve">
     <value>Enter a code&lt;br&gt; for access</value>
+  </data>
+  <data name="ExtraAttachmentExportButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ImageButtonFirstPage" xml:space="preserve">
+    <value>First Page</value>
+  </data>
+  <data name="ImageButtonLastPage" xml:space="preserve">
+    <value>Last Page</value>
+  </data>
+  <data name="ImageButtonNext" xml:space="preserve">
+    <value>Next Page</value>
+  </data>
+  <data name="ImageButtonPrev" xml:space="preserve">
+    <value>Previous Page</value>
+  </data>
+  <data name="ImageButtonZoomInToolTip" xml:space="preserve">
+    <value>Zoom In</value>
+  </data>
+  <data name="ImageButtonZoomOutToolTip" xml:space="preserve">
+    <value>Zoom Out</value>
   </data>
   <data name="LabelCode" xml:space="preserve">
     <value>&lt;strong&gt;Code for access&lt;/strong&gt;&lt;br&gt;&lt;span&gt;to&amp;nbsp;web results:&lt;/span&gt;</value>
@@ -145,13 +169,13 @@
     <value>To download all results in the form of the zip-file:</value>
   </data>
   <data name="ResultPDFExtraAttachmentLabelText" xml:space="preserve">
-    <value>To download additional results:</value>
+    <value>Аdditional</value>
   </data>
   <data name="ResultPDFLabelText" xml:space="preserve">
-    <value>Save result as PDF:</value>
+    <value>Results order</value>
   </data>
   <data name="ResultPDFMicroLabelText" xml:space="preserve">
-    <value>Save result as a microbiology PDF:</value>
+    <value>Microbiology</value>
   </data>
   <data name="StatusLabelExeption" xml:space="preserve">
     <value>There is no communication with laboratory, try later</value>

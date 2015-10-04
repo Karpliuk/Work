@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Routing;
+using System.IO;
 
 namespace WebReport
 {
@@ -43,7 +44,20 @@ namespace WebReport
 
         protected void Session_End(object sender, EventArgs e)
         {
-
+            //if (Session["SilabMainResultFile"] != null)
+            //{
+            //    if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Session["SilabMainResultFile"].ToString())))
+            //    {
+            //        File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Session["SilabMainResultFile"].ToString()));
+            //    }
+            //}
+            //if (Session["SilabMicroResultFile"] != null)
+            //{
+            //    if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Session["SilabMicroResultFile"].ToString())))
+            //    {
+            //        File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Session["SilabMicroResultFile"].ToString()));
+            //    }
+            //}
         }
 
         protected void Application_End(object sender, EventArgs e)

@@ -38,29 +38,31 @@ namespace WebReport
             WarningMessageCulture(); // проверка культуры на укр язык? ок, вывести предуприждение            
             if (!IsPostBack)
             {
-                
+
             }
         }
 
         protected void WebAccessCodeTextBox_TextChanged(object sender, EventArgs e)
         {
             this.ErrorLabel.Text = null;
-            this.StatusLabel.Text = null;
-            this.ResultPDFLabel.Text = null;
-            this.ResultPDFMicroLabel.Text = null;
-            this.ResultPDFExtraAttachmentLabel.Text = null;
-            this.ResultAll.Text = null;
-            this.MainExportButton.Visible = false;
-            this.MicroExportButton.Visible = false;
-            this.ExtraAttachmentExportButton.Visible = false;
-            this.ResultAllExportButton.Visible = false;
+            this.StatusLabel.Text = null; 
             this.PanelResult.Visible = false;
+            this.ErrorDownloadMainResultLabel.Text = null;
+            this.ErrorDownloadMicroResultLabel.Text = null;
+            this.ErrorDownloadExtraAttachmentResultLabel.Text = null;
+            this.ResultPDFLabel.Text = GetLocalResourceObject("ResultPDFLabelText").ToString();
+            this.ResultPDFMicroLabel.Text = GetLocalResourceObject("ResultPDFMicroLabelText").ToString();
+            this.ResultPDFExtraAttachmentLabel.Text = GetLocalResourceObject("ResultPDFExtraAttachmentLabelText").ToString();
+            this.tabPanelMainResult.Style["display"] = "none";
+            this.tabPanelMicroResult.Style["display"] = "none";
+            this.tabPanelExtraAttachmentResult.Style["display"] = "none";
         }
 
         protected void BtnGetResult_Click(object sender, EventArgs e)
         {
             ArrayList arrExtraAttachment = null; // для массива ExtraAttachment
             bool flag = false; // для проверки ExtraAttachment
+            bool active = true; // для активной вкладки
 
             if (String.IsNullOrEmpty(WebAccessCodeTextBox.Text))
             {
@@ -113,24 +115,58 @@ namespace WebReport
                             return;
                         }
 
-                        this.PanelResult.Visible = true;
-                        Session.RemoveAll(); // удалим из состояния сеанса все ключи и значения
+                        this.PanelResult.Visible = true;                       
+                        DeleteFileAndClearSession();  //удалим все файлы для даного сеанса и удалим из состояния сеанса все ключи и значения
                         Session["barcode"] = resultSummary.Barcode.ToString();
                         foreach (var result in resultSummary.Results)
                         {
                             if (String.Equals("SilabMainResult", result.Type.ToString()))
                             {
-                                string tmp = result.ServiceUri;
                                 Session["SilabMainResultUri"] = result.ServiceUri;
-                                this.ResultPDFLabel.Text = GetLocalResourceObject("ResultPDFLabelText").ToString();
-                                this.MainExportButton.Visible = true;
+                                GetFileSilabMainResult();
+                                this.tabPanelMainResult.Style["display"] = "inline-block";
+                                if (string.IsNullOrEmpty(this.tabPanelMainResult.Attributes["class"]))
+                                {
+                                   
+                                }
+                                else
+                                {
+                                    var newClassValue = this.panelMainResult.Attributes["class"].Replace("tab-pane fade in active", "tab-pane fade");
+                                    this.panelMainResult.Attributes["class"] = newClassValue;
+                                    this.tabPanelMainResult.Attributes.Remove("class");
+                                }                              
+                                if (active)
+                                {
+                                    var newClassValue = this.panelMainResult.Attributes["class"].Replace("tab-pane fade", "tab-pane fade in active");
+                                    this.panelMainResult.Attributes["class"] = newClassValue;
+                                    this.tabPanelMainResult.Attributes.Add("class", "active");
+                                    active = false;
+                                }
+                               
                             }
                             else
                             if (String.Equals("SilabMicroResult", result.Type.ToString()))
                             {
                                 Session["SilabMicroResultUri"] = result.ServiceUri;
-                                this.ResultPDFMicroLabel.Text = GetLocalResourceObject("ResultPDFMicroLabelText").ToString();
-                                this.MicroExportButton.Visible = true;
+                                GetFileSilabMicroResult();
+                                this.tabPanelMicroResult.Style["display"] = "inline-block";
+                                if (string.IsNullOrEmpty(this.tabPanelMicroResult.Attributes["class"]))
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    var newClassValue = this.panelMicroResult.Attributes["class"].Replace("tab-pane fade in active", "tab-pane fade");
+                                    this.panelMicroResult.Attributes["class"] = newClassValue;
+                                    this.tabPanelMicroResult.Attributes.Remove("class");
+                                }
+                                if (active)
+                                {
+                                    var newClassValue = this.panelMicroResult.Attributes["class"].Replace("tab-pane fade", "tab-pane fade in active");
+                                    this.panelMicroResult.Attributes["class"] = newClassValue;
+                                    this.tabPanelMicroResult.Attributes.Add("class", "active");
+                                    active = false;
+                                }                               
                             }
                             else
                             if (String.Equals("ExtraAttachment", result.Type.ToString()))
@@ -141,18 +177,35 @@ namespace WebReport
                                 }
                                 flag = true;
                                 arrExtraAttachment.Add(result.ServiceUri);
+                                this.tabPanelExtraAttachmentResult.Style["display"] = "inline-block";
+                                if (string.IsNullOrEmpty(this.tabPanelExtraAttachmentResult.Attributes["class"]))
+                                {
+                                    
+                                }   
+                                else
+                                {
+                                    var newClassValue = this.panelExtraAttachmentResult.Attributes["class"].Replace("tab-pane fade in active", "tab-pane fade");
+                                    this.panelExtraAttachmentResult.Attributes["class"] = newClassValue;
+                                    this.tabPanelExtraAttachmentResult.Attributes.Remove("class");
+                                }                            
+                                if (active)
+                                {
+                                    var newClassValue = this.panelExtraAttachmentResult.Attributes["class"].Replace("tab-pane fade", "tab-pane fade in active");
+                                    this.panelExtraAttachmentResult.Attributes["class"] = newClassValue;                                   
+                                    this.tabPanelExtraAttachmentResult.Attributes.Add("class", "active");
+                                    active = false;
+                                }
+                                //this.rowResultPDFExtraAttachmentLabel.Style["display"] = "block";
                             }
                         }
                         if (flag)
                         {
-                            Session["ExtraAttachmentUri"] = arrExtraAttachment;
-                            this.ResultPDFExtraAttachmentLabel.Text = GetLocalResourceObject("ResultPDFExtraAttachmentLabelText").ToString();
-                            this.ExtraAttachmentExportButton.Visible = true;
+                            Session["ExtraAttachmentUri"] = arrExtraAttachment;                           
                         }
                         if (resultSummary.Results.Length >= 2)
                         {
                             this.ResultAll.Text = GetLocalResourceObject("ResultAllText").ToString();
-                            this.ResultAllExportButton.Visible = true;
+                            this.rowResultAllLabel.Style["display"] = "block";
                         }
                     }
                     client.Close();
@@ -376,6 +429,96 @@ namespace WebReport
                     File.Delete(zipFileName);
                 }
             }                
+        }
+
+        public void GetFileSilabMainResult()
+        {
+            try
+            {
+                WebClient webClient = new WebClient();
+                webClient.Credentials = CredentialCache.DefaultCredentials;
+                string fileNameMain = "SynevoResults" + Session["barcode"] + ".pdf";
+                webClient.DownloadFile(Session["SilabMainResultUri"].ToString(), Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileNameMain));
+                Session["SilabMainResultFile"] = fileNameMain;
+            }            
+             catch (System.Threading.ThreadAbortException ex)
+            {
+                logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+            }
+            catch (Exception ex)
+            {                
+                this.ErrorDownloadMainResultLabel.Text= GetLocalResourceObject("ErrorDownloadResultLabel").ToString();
+                logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+            }
+        }
+
+        public void GetFileSilabMicroResult()
+        {
+            try
+            {
+                WebClient webClient = new WebClient();
+                webClient.Credentials = CredentialCache.DefaultCredentials;
+                string fileNameMicro = "SynevoResults" + Session["barcode"] + "_Micro.pdf";
+                webClient.DownloadFile(Session["SilabMicroResultUri"].ToString(), Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileNameMicro));
+                Session["SilabMіcroResultFile"] = fileNameMicro;                
+            }           
+             catch (System.Threading.ThreadAbortException ex)
+            {
+                logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+            }
+            catch (Exception ex)
+            { 
+                this.ErrorDownloadMicroResultLabel.Text = GetLocalResourceObject("ErrorDownloadResultLabel").ToString();
+                logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
+            }
+        }
+
+        public void DeleteFileAndClearSession()
+        {
+            if (Session["SilabMainResultFile"] != null)
+            {
+                if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Session["SilabMainResultFile"].ToString())))
+                {
+                    File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Session["SilabMainResultFile"].ToString()));
+                }
+            }
+            if (Session["SilabMicroResultFile"] != null)
+            {
+                if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Session["SilabMicroResultFile"].ToString())))
+                {
+                    File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Session["SilabMicroResultFile"].ToString()));
+                }
+            }
+            Session.RemoveAll();
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string GetSilabMainResult()
+        {
+            try
+            {
+                return HttpContext.Current.Session["SilabMainResultFile"].ToString();
+            }
+            catch (Exception ex)
+            {
+                //результаты невозможно выкачать с сервиса
+            }
+            return null;  
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string GetSilabMicroResult()
+        {
+            try
+            {
+                return HttpContext.Current.Session["SilabMіcroResultFile"].ToString();
+            }
+            catch (Exception ex)
+            {
+                //результаты невозможно выкачать с сервиса
+            }
+            return null;
+
         }
     }
 }

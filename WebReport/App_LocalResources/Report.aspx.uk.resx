@@ -127,10 +127,34 @@
     <value>Скачати</value>
   </data>
   <data name="ButtonToolTip" xml:space="preserve">
-    <value>Зберегти</value>
+    <value>Зберегти як PDF</value>
+  </data>
+  <data name="ErrorDownloadResultLabel" xml:space="preserve">
+    <value>Результати відсутні</value>
   </data>
   <data name="ErrorLabelText" xml:space="preserve">
     <value>Введіть код для &lt;br&gt; доступа</value>
+  </data>
+  <data name="ExtraAttachmentExportButton" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="ImageButtonFirstPage" xml:space="preserve">
+    <value>Перейти на першу сторінку</value>
+  </data>
+  <data name="ImageButtonLastPage" xml:space="preserve">
+    <value>Перейти на останню сторінку</value>
+  </data>
+  <data name="ImageButtonNext" xml:space="preserve">
+    <value>Перейти на наступну сторінку</value>
+  </data>
+  <data name="ImageButtonPrev" xml:space="preserve">
+    <value>Перейти на попередню сторінку</value>
+  </data>
+  <data name="ImageButtonZoomInToolTip" xml:space="preserve">
+    <value>Збільшити</value>
+  </data>
+  <data name="ImageButtonZoomOutToolTip" xml:space="preserve">
+    <value>Зменшити</value>
   </data>
   <data name="LabelCode" xml:space="preserve">
     <value>&lt;strong&gt;Код для доступа&lt;/strong&gt;&lt;br&gt;&lt;span&gt;до&amp;nbsp;веб-результатів:&lt;/span&gt;</value>
@@ -145,13 +169,13 @@
     <value>Скачати всі результати у вигляді zip-файла:</value>
   </data>
   <data name="ResultPDFExtraAttachmentLabelText" xml:space="preserve">
-    <value>Скачати додаткові результати:</value>
+    <value>Додаткові</value>
   </data>
   <data name="ResultPDFLabelText" xml:space="preserve">
-    <value>Зберегти результати у PDF:</value>
+    <value>Результати замовлення</value>
   </data>
   <data name="ResultPDFMicroLabelText" xml:space="preserve">
-    <value>Зберегти результати з мікробіології у PDF:</value>
+    <value>Мікробіологія</value>
   </data>
   <data name="StatusLabelExeption" xml:space="preserve">
     <value>Відсутній зв'язок з лабораторією, попробуйте пізніше</value>
