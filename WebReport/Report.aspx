@@ -7,35 +7,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Результаты исследований</title>
     <%-- include Bootstrap --%>        
-    <script  src="Scripts/jquery-1.9.1.min.js"></script>
-    <script  src="Scripts/jquery-1.9.1.js"></script>
-    <script src="Scripts/jquery-ui.js"></script>
-    <script  src="Scripts/bootstrap.min.js"></script>
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
-<%--    <script  src="../Scripts/jquery-1.9.1.min.js"></script>
-    <script  src="../Scripts/jquery-1.9.1.js"></script>
+    <script src="../Scripts/jquery-1.9.1.js"></script>
     <script src="../Scripts/jquery-ui.js"></script>
-    <script  src="../Scripts/bootstrap.min.js"></script>
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />--%>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" /> 
+    <link href="css/Style.css"  type = "text/css" rel="stylesheet" />
 
-    <link href="css/Style.css"  type = "text/css" rel="stylesheet" /> 
-
-    <script src="PDFjs/src/shared/util.js"></script>
-    <script src="PDFjs/src/display/api.js"></script>
-    <script src="PDFjs/src/display/canvas.js"></script>
-    <script src="PDFjs/src/display/webgl.js"></script>
-    <script src="PDFjs/src/display/font_loader.js"></script>
-    <script>
-        PDFJS.workerSrc = 'PDFjs/src/worker_loader.js';
-    </script>
-<%--    <script src="../PDFjs/src/shared/util.js"></script>
+    <script src="../PDFjs/src/shared/util.js"></script>
     <script src="../PDFjs/src/display/api.js"></script>
     <script src="../PDFjs/src/display/canvas.js"></script>
     <script src="../PDFjs/src/display/webgl.js"></script>
     <script src="../PDFjs/src/display/font_loader.js"></script>
     <script>
         PDFJS.workerSrc = '../PDFjs/src/worker_loader.js';
-    </script>--%>
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -44,16 +29,20 @@
       <div class="row">  
           <div class="col-xs-12">
             <asp:Image ID="Image1" runat="server" ImageUrl="img/Synevo_logo_.png" Width="130" Height="140" /><br />
-          </div>     
+               <asp:ImageButton ID="ImageButtonClearSession" runat="server" 
+                  ImageUrl="img/edit-clear.png"  
+                  ToolTip="<%$ Resources:ImageButtonClearSession %>"
+                  OnClick="BtnClearSession_Click" />
+          </div>  
       </div>                 
       <div class="row">
-          <div class="col-xs-12" style="padding-left:40px; margin-top:-30px;"> 
+          <div class="col-xs-10" style="padding-left:40px; margin-top:-60px;"> 
              <asp:Label ID="Label1" runat="server" Text="<%$ Resources:LabelHeader %>"></asp:Label><br /><br /> 
-          </div>
+          </div>          
       </div> 
         <div class="col-xs-12" style="text-align:center;">  
                <asp:Label ID="WarningMessage" runat="server" Text="<%$ Resources:WarningMessage %>" Visible="false"></asp:Label> 
-           </div>
+        </div>
        <div class="row">
         <div class="col-xs-12" style="padding-left:40px">
             <asp:Label ID="Label2" runat="server" Text="<%$ Resources:LabelCode %>"></asp:Label>
@@ -110,6 +99,7 @@
      <asp:Panel ID="PanelResult" runat="server" BackColor="White" BorderStyle="None" 
                 HorizontalAlign="Left" Width="100%" Visible="False">   
 
+
           <ul class="nav nav-tabs" style="margin-top:30px">
               <li id="tabPanelMainResult" runat="server"> 
                   <a data-toggle="tab" href="#panelMainResult"> <asp:Label ID="ResultPDFLabel" runat="server" Font-Bold="True" Font-Size="Large"></asp:Label> </a>
@@ -120,8 +110,11 @@
               <li id="tabPanelExtraAttachmentResult" runat="server">
                  <a data-toggle="tab" href="#panelExtraAttachmentResult"><asp:Label ID="ResultPDFExtraAttachmentLabel" runat="server" Font-Bold="True" Font-Size="Large"></asp:Label></a>
               </li>
-            </ul>     
+           </ul>     
          <br />
+
+<%--         <asp:Image ID="Image2" runat="server" ImageUrl="img/ajax-loader.gif"  /><br />--%>
+
          <div class="row" style="text-align:center;">    
           <div class="tab-content">
             <div id="panelMainResult" class="tab-pane fade" runat="server">
@@ -159,8 +152,7 @@
                  <br /> 
                  <asp:Label ID="ErrorDownloadMainResultLabel" runat="server"></asp:Label>                
                  <canvas id="canvasMain" width="0" height="0"/>                             
-                 <script src="PDFjs/src/rendering_contentMain.js"></script>                           
-                 <%--<script src="../PDFjs/src/rendering_contentMain.js"></script>  --%>               
+                 <script src="../PDFjs/src/rendering_contentMain.js"></script>                
               </div>
 
             <div id="panelMicroResult" class="tab-pane fade" runat="server">
@@ -191,7 +183,6 @@
                   <asp:ImageButton ID="ImageButtonZoomOutMicro" runat="server" 
                   ImageUrl="img/toolbarButton-zoomOut@2x.png" OnClientClick="return false" 
                   ToolTip="<%$ Resources:ImageButtonZoomOutToolTip %>" />&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                  &nbsp &nbsp &nbsp &nbsp &nbsp
 
                   <asp:ImageButton ID="MicroExportButton" runat="server" 
                   ImageUrl="img/toolbarButton-download@2x.png" 
@@ -200,71 +191,49 @@
                
                   <br /> 
                  <asp:Label ID="ErrorDownloadMicroResultLabel" runat="server"></asp:Label>
-                 <canvas id="canvasMicro" width="0" height="0"/>                 
-                 <script src="PDFjs/src/rendering_contentMicro.js"></script>
-                 <%--<script src="../PDFjs/src/rendering_contentMicro.js"></script>--%>                 
+                 <canvas id="canvasMicro" width="0" height="0"/>          
+                 <script type="text/javascript" src="../PDFjs/src/rendering_contentMicro.js"></script>                           
               </div>
 
                 <div id="panelExtraAttachmentResult" class="tab-pane fade" runat="server">
                   <%-- рендеринг ExtraAttachment --%>
-                    <asp:Label ID="ErrorDownloadExtraAttachmentResultLabel" runat="server"></asp:Label>
-                   Hello
-                </div>
-          </div>
-       </div>
-
-
-
-
-     <%-- <div class="row" id="rowResultPDFMicroLabel" style="margin-top:30px; display:none;" runat="server">  
-          <div class="col-xs-12"
-               style="min-width:305px; text-align:center;">
-               <asp:Label ID="ResultPDFMicroLabel2" runat="server" Font-Bold="True" Font-Size="Large"></asp:Label>
-          </div> 
-          <div class="col-xs-12" style="text-align:center; padding-top:20px;">
-                  <asp:ImageButton ID="ImageButtonPrevMicro" runat="server" 
-                  ImageUrl="img/findbarButton-prev@2x.png"
+                  <asp:ImageButton ID="ImageButtonPrevExtraAttachment" runat="server" 
+                  ImageUrl="img/findbarButton-prev@2x.png" OnClientClick="return false" 
                   ToolTip="<%$ Resources:ImageButtonPrev %>" />&nbsp &nbsp &nbsp
 
-                  <asp:ImageButton ID="ImageButtonNextMicro" runat="server" 
-                  ImageUrl="img/findbarButton-next@2x.png"
+                  <asp:ImageButton ID="ImageButtonNextExtraAttachment" runat="server" 
+                  ImageUrl="img/findbarButton-next@2x.png" OnClientClick="return false" 
                   ToolTip="<%$ Resources:ImageButtonNext %>" />&nbsp &nbsp &nbsp
 
-                  <span id="page_numMicro" style="font-size:24px; vertical-align: 7px;"></span><span id="page_countMicro" style="font-size:24px; vertical-align: 7px;"></span>&nbsp &nbsp &nbsp                  
-
-                  <asp:ImageButton ID="ImageButtonFirstPageMicro" runat="server" 
-                  ImageUrl="img/secondaryToolbarButton-firstPage@2x.png" 
+                  <span id="page_numExtraAttachment" style="font-size:24px; vertical-align: 7px;"></span><span id="page_countExtraAttachment" style="font-size:24px; vertical-align: 7px;"></span>&nbsp &nbsp &nbsp                  
+                 
+                  <asp:ImageButton ID="ImageButtonFirstPageExtraAttachment" runat="server" 
+                  ImageUrl="img/secondaryToolbarButton-firstPage@2x.png" OnClientClick="return false" 
                   ToolTip="<%$ Resources:ImageButtonFirstPage %>" />&nbsp &nbsp &nbsp
 
-                  <asp:ImageButton ID="ImageButtonLastPageMicro" runat="server" 
-                  ImageUrl="img/secondaryToolbarButton-lastPage@2x.png" 
-                  ToolTip="<%$ Resources:ImageButtonLastPage %>" />&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                  <asp:ImageButton ID="ImageButtonLastPageExtraAttachment" runat="server" 
+                  ImageUrl="img/secondaryToolbarButton-lastPage@2x.png" OnClientClick="return false" 
+                  ToolTip="<%$ Resources:ImageButtonLastPage %>" />&nbsp &nbsp &nbsp 
 
-                  <asp:ImageButton ID="MicroExportButton" runat="server" 
-                  ImageUrl="img/toolbarButton-download@2x.png" 
-                  onclick="MicroExportButton_Click"
-                  ToolTip="<%$ Resources:ButtonToolTip %>" />
-                 <br />
-     <canvas id="canvasMicro" width="0" height="0"/>
-    <%-- <script src="PDFjs/src/rendering_contentMicro.js"></script> 
-          </div>  
-            <br />
-            <hr />
-      </div>--%>
-         
-         
-        <%--<div class="row" id="rowResultPDFExtraAttachmentLabel" style="margin-top:10px; display:none;" runat="server"> 
-          <div class="col-xs-12"
-               style="min-width:305px; text-align:center;">
-               <asp:Label ID="ResultPDFExtraAttachmentLabel2" runat="server" Font-Bold="True" Font-Size="Large"></asp:Label>
-               <asp:ImageButton ID="ExtraAttachmentExportButton" runat="server" 
-                 ImageUrl="img/toolbarButton-download.png" onclick="ExtraAttachmentExportButton_Click" 
-                 ToolTip="<%$ Resources:ExtraAttachmentExportButton %>" />&nbsp
-          </div> 
-            <br />
-            <hr />
-      </div> --%>
+                  <asp:ImageButton ID="ImageButtonZoomInExtraAttachment" runat="server" 
+                  ImageUrl="img/toolbarButton-zoomIn@2x.png" OnClientClick="return false" 
+                  ToolTip="<%$ Resources:ImageButtonZoomInToolTip %>" />&nbsp &nbsp &nbsp
 
+                  <asp:ImageButton ID="ImageButtonZoomOutExtraAttachment" runat="server" 
+                  ImageUrl="img/toolbarButton-zoomOut@2x.png" OnClientClick="return false" 
+                  ToolTip="<%$ Resources:ImageButtonZoomOutToolTip %>" />&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+                  <asp:ImageButton ID="ExtraAttachmentExportButton" runat="server" 
+                  ImageUrl="img/toolbarButton-download@2x.png"
+                  onclick="ExtraAttachmentExportButton_Click"
+                  ToolTip="<%$ Resources:ExtraAttachmentExportButton %>" />
+                 <br /> 
+                 <asp:Label ID="ErrorDownloadExtraAttachmentResultLabel" runat="server"></asp:Label>               
+                 <canvas id="canvasExtraAttachment" width="0" height="0"/>                                                
+                 <script src="../PDFjs/src/rendering_contentExtraAttachment.js"></script> 
+               </div>
+          </div>
+       </div>
 
       <div class="row" id="rowResultAllLabel" style="margin-top:10px; display:none;" runat="server">
           <div class="col-xs-12"

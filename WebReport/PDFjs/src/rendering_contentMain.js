@@ -112,30 +112,25 @@ function onZoomOut() {
 }
 document.getElementById('ImageButtonZoomOut').addEventListener('click', onZoomOut);
 
-function GetMainResult() {
-    $.ajax({
-        type: "POST",
-        url: "Report.aspx/GetSilabMainResult",
-        data: "{}",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            OnSuccess(result.d);
-        },
-        failure: function (response) {
-            alert(response.d);
-        }
-    })
+function base64ToUint8Array(base64) {//base64 is an byte Array sent from server-side
+    var raw = atob(base64); //This is a native function that decodes a base64-encoded string.
+    var uint8Array = new Uint8Array(new ArrayBuffer(raw.length));
+    for (var i = 0; i < raw.length; i++)
+    {
+        uint8Array[i] = raw.charCodeAt(i);
+    }
+    return uint8Array;
 }
 
-function OnSuccess(url) {
-    PDFJS.getDocument(url).then(function (pdfDoc_) {
-    pdfDoc = pdfDoc_;
-    document.getElementById('page_count').textContent = pdfDoc.numPages;
+function GetMainResult() {
 
-    // Initial/first page rendering
-    renderPage(pageNum);
-    });
+            PDFJS.getDocument('ResultHandler?Main=0').then(function (pdfDoc_) {
+                pdfDoc = pdfDoc_;
+                document.getElementById('page_count').textContent = pdfDoc.numPages;
+
+                // Initial/first page rendering
+                renderPage(pageNum);
+            });
 }
 
 GetMainResult();

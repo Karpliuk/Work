@@ -31,6 +31,15 @@ namespace WebReport {
         protected global::System.Web.UI.WebControls.Image Image1;
         
         /// <summary>
+        /// ImageButtonClearSession элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButtonClearSession;
+        
+        /// <summary>
         /// Label1 элемент управления.
         /// </summary>
         /// <remarks>
@@ -344,6 +353,69 @@ namespace WebReport {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelExtraAttachmentResult;
+        
+        /// <summary>
+        /// ImageButtonPrevExtraAttachment элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButtonPrevExtraAttachment;
+        
+        /// <summary>
+        /// ImageButtonNextExtraAttachment элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButtonNextExtraAttachment;
+        
+        /// <summary>
+        /// ImageButtonFirstPageExtraAttachment элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButtonFirstPageExtraAttachment;
+        
+        /// <summary>
+        /// ImageButtonLastPageExtraAttachment элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButtonLastPageExtraAttachment;
+        
+        /// <summary>
+        /// ImageButtonZoomInExtraAttachment элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButtonZoomInExtraAttachment;
+        
+        /// <summary>
+        /// ImageButtonZoomOutExtraAttachment элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageButtonZoomOutExtraAttachment;
+        
+        /// <summary>
+        /// ExtraAttachmentExportButton элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ExtraAttachmentExportButton;
         
         /// <summary>
         /// ErrorDownloadExtraAttachmentResultLabel элемент управления.

@@ -363,6 +363,7 @@
     <Content Include="PDFjs\src\doc_helper.js" />
     <Content Include="PDFjs\src\images\logo.svg" />
     <Content Include="PDFjs\src\pdf.js" />
+    <Content Include="PDFjs\src\rendering_contentExtraAttachment.js" />
     <Content Include="PDFjs\src\rendering_contentMain.js" />
     <Content Include="PDFjs\src\rendering_contentMicro.js" />
     <Content Include="PDFjs\src\shared\cffStandardStrings.js" />
@@ -420,6 +421,7 @@
     <Compile Include="Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ResultHandler.cs" />
     <Compile Include="Service References\ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -6,10 +6,6 @@ var pdfDocMicro = null,
     canvasMicro = document.getElementById('canvasMicro'),
     ctxMicro = canvasMicro.getContext('2d');
 
-/**
-* Get page info from document, resize canvas accordingly, and render page.
-* @param num Page number.
-*/
 function renderPageMicro(num) {
     pageRenderingMicro = true;
     // Using promise to fetch the page
@@ -113,29 +109,14 @@ function onZoomOutMicro() {
 document.getElementById('ImageButtonZoomOutMicro').addEventListener('click', onZoomOutMicro);
 
 function GetMicroResult() {
-    $.ajax({
-        type: "POST",
-        url: "Report.aspx/GetSilabMicroResult",
-        data: "{}",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            OnSuccessMicro(result.d);
-        },
-        failure: function (response) {
-            alert(response.d);
-        }
-    })
-}
 
-function OnSuccessMicro(url) {
-    PDFJS.getDocument(url).then(function (pdfDocMicro_) {
-        pdfDocMicro = pdfDocMicro_;
-        document.getElementById('page_countMicro').textContent = pdfDocMicro.numPages;
+        PDFJS.getDocument('ResultHandler?Micro=1').then(function (pdfDocMicro_) {
+            pdfDocMicro = pdfDocMicro_;
+            document.getElementById('page_countMicro').textContent = pdfDocMicro.numPages;
 
-        // Initial/first page rendering
-        renderPageMicro(pageNumMicro);
-    });
+            // Initial/first page rendering
+            renderPageMicro(pageNumMicro);
+        });
 }
 
 GetMicroResult();

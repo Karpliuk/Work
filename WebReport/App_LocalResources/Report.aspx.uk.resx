@@ -124,19 +124,22 @@
     <value>Отримати результати</value>
   </data>
   <data name="ButtonDownloadToolTip" xml:space="preserve">
-    <value>Скачати</value>
+    <value>Завантажити</value>
   </data>
   <data name="ButtonToolTip" xml:space="preserve">
     <value>Зберегти як PDF</value>
   </data>
   <data name="ErrorDownloadResultLabel" xml:space="preserve">
-    <value>Результати відсутні</value>
+    <value>Результати по замовленню відсутні.</value>
   </data>
   <data name="ErrorLabelText" xml:space="preserve">
-    <value>Введіть код для &lt;br&gt; доступа</value>
+    <value>Введіть код  &lt;br&gt; доступа</value>
   </data>
   <data name="ExtraAttachmentExportButton" xml:space="preserve">
     <value>Зберегти</value>
+  </data>
+  <data name="ImageButtonClearSession" xml:space="preserve">
+    <value>Закрити сесію</value>
   </data>
   <data name="ImageButtonFirstPage" xml:space="preserve">
     <value>Перейти на першу сторінку</value>
@@ -166,25 +169,25 @@
     <value>Для перегляду та збереження результатів&lt;br&gt;&lt;span&gt;введіть код у полі та натисніть кнопку:&lt;/span&gt;</value>
   </data>
   <data name="ResultAllText" xml:space="preserve">
-    <value>Скачати всі результати у вигляді zip-файла:</value>
+    <value>Скачати всі результати як архів zip</value>
   </data>
   <data name="ResultPDFExtraAttachmentLabelText" xml:space="preserve">
-    <value>Додаткові</value>
+    <value>Додаткові результат</value>
   </data>
   <data name="ResultPDFLabelText" xml:space="preserve">
-    <value>Результати замовлення</value>
+    <value>Основний результат</value>
   </data>
   <data name="ResultPDFMicroLabelText" xml:space="preserve">
-    <value>Мікробіологія</value>
+    <value>Результат мікробіології</value>
   </data>
   <data name="StatusLabelExeption" xml:space="preserve">
-    <value>Відсутній зв'язок з лабораторією, попробуйте пізніше</value>
+    <value>Відсутній зв'язок з лабораторією, спопробуйте пізніше</value>
   </data>
   <data name="StatusLabelNotReady" xml:space="preserve">
     <value>Ваше замовлення не готове, показані попередні результати</value>
   </data>
   <data name="StatusLabelNotResult" xml:space="preserve">
-    <value>По-вашому замовленню результатів немає</value>
+    <value>По вашому замовленню результатів немає</value>
   </data>
   <data name="StatusLabelOrderIsNotFound" xml:space="preserve">
     <value>Замовлення не знайдено. Перевірте введений код та спопробуйте іще раз. Зверніть увагу, що всі букви повинні бути латинськими, а великі та малі відрізняються</value>

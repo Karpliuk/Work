@@ -10,6 +10,7 @@ using System.Net;
 using System.IO.Compression;
 using System.Collections;
 using NLog;
+using System.Configuration;
 
 namespace WebReport
 {
@@ -35,7 +36,7 @@ namespace WebReport
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            WarningMessageCulture(); // проверка культуры на укр язык? ок, вывести предуприждение            
+            WarningMessageCulture();          
             if (!IsPostBack)
             {
 
@@ -56,14 +57,31 @@ namespace WebReport
             this.tabPanelMainResult.Style["display"] = "none";
             this.tabPanelMicroResult.Style["display"] = "none";
             this.tabPanelExtraAttachmentResult.Style["display"] = "none";
+            if (string.IsNullOrEmpty(this.tabPanelMainResult.Attributes["class"])) { }
+            else
+            {
+                var newClassValue = this.panelMainResult.Attributes["class"].Replace("tab-pane fade in active", "tab-pane fade");
+                this.panelMainResult.Attributes["class"] = newClassValue;
+            }
+            if (string.IsNullOrEmpty(this.tabPanelMicroResult.Attributes["class"])) { }
+            else
+            {
+                var newClassValue = this.panelMicroResult.Attributes["class"].Replace("tab-pane fade in active", "tab-pane fade");
+                this.panelMicroResult.Attributes["class"] = newClassValue;
+            }
+            if (string.IsNullOrEmpty(this.tabPanelExtraAttachmentResult.Attributes["class"])) { }
+            else
+            {
+                var newClassValue = this.panelExtraAttachmentResult.Attributes["class"].Replace("tab-pane fade in active", "tab-pane fade");
+                this.panelExtraAttachmentResult.Attributes["class"] = newClassValue;
+            }
         }
 
         protected void BtnGetResult_Click(object sender, EventArgs e)
         {
-            ArrayList arrExtraAttachment = null; // для массива ExtraAttachment
-            bool flag = false; // для проверки ExtraAttachment
-            bool active = true; // для активной вкладки
-
+            ArrayList arrExtraAttachment = null; 
+            bool flag = false; 
+            bool active = true; 
             if (String.IsNullOrEmpty(WebAccessCodeTextBox.Text))
             {
                 this.ErrorLabel.Text = GetLocalResourceObject("ErrorLabelText").ToString();
@@ -73,6 +91,13 @@ namespace WebReport
                 try
                 {
                     ResultServiceClient client =  new ResultServiceClient();
+                    string login = "", pass = "";
+                    login = ConfigurationManager.AppSettings["loginForService"];
+                    pass = ConfigurationManager.AppSettings["passwordForService"];
+
+                    client.ClientCredentials.Windows.ClientCredential.UserName = login;
+                    client.ClientCredentials.Windows.ClientCredential.Password = pass;
+
                     var resultSummary = client.GetResultSummaryByWebCode(WebAccessCodeTextBox.Text);     
                     if (resultSummary == null)
                     {
@@ -82,16 +107,7 @@ namespace WebReport
                     else
                     {
                         this.StatusLabel.Text = null;
-                        //// to set up a local instance of the client
-                        //var client2 = new HipChat.HipChatClient("4fc92f77bc0deaf0d203344e68c650", "1894434", "DotNetSender");
-                        //// send a message
-                        //client2.SendMessage("Hello World!");
 
-                        //// for one-off use, there is a static method - NB this creates an instance internally, so 
-                        //// only use when making one-off calls.
-                        //HipChat.HipChatClient.SendMessage("4fc92f77bc0deaf0d203344e68c650", "1894434", "DotNetSender", "Hello World!");
-                        // "http://192.168.1.251/SilabIntegration/ResultDownload.svc/Result?orderId=11019592&resultType=0"
-                        //logger.Error("Test");
                         if ((resultSummary.Results.Count() > 0) && (resultSummary.IsFinal == true)) // ваш заказ готов результаты есть
                         {
                             this.StatusLabel.ForeColor = System.Drawing.Color.Green;
@@ -115,15 +131,14 @@ namespace WebReport
                             return;
                         }
 
-                        this.PanelResult.Visible = true;                       
-                        DeleteFileAndClearSession();  //удалим все файлы для даного сеанса и удалим из состояния сеанса все ключи и значения
+                        this.PanelResult.Visible = true;
+                        Session.RemoveAll();
                         Session["barcode"] = resultSummary.Barcode.ToString();
                         foreach (var result in resultSummary.Results)
                         {
                             if (String.Equals("SilabMainResult", result.Type.ToString()))
-                            {
-                                Session["SilabMainResultUri"] = result.ServiceUri;
-                                GetFileSilabMainResult();
+                            {                                
+                                Session["SilabMainResultUri"] = result.ServiceUri;                           
                                 this.tabPanelMainResult.Style["display"] = "inline-block";
                                 if (string.IsNullOrEmpty(this.tabPanelMainResult.Attributes["class"]))
                                 {
@@ -148,7 +163,6 @@ namespace WebReport
                             if (String.Equals("SilabMicroResult", result.Type.ToString()))
                             {
                                 Session["SilabMicroResultUri"] = result.ServiceUri;
-                                GetFileSilabMicroResult();
                                 this.tabPanelMicroResult.Style["display"] = "inline-block";
                                 if (string.IsNullOrEmpty(this.tabPanelMicroResult.Attributes["class"]))
                                 {
@@ -176,7 +190,7 @@ namespace WebReport
                                     arrExtraAttachment = new ArrayList();
                                 }
                                 flag = true;
-                                arrExtraAttachment.Add(result.ServiceUri);
+                                arrExtraAttachment.Add(result.ServiceUri);                                
                                 this.tabPanelExtraAttachmentResult.Style["display"] = "inline-block";
                                 if (string.IsNullOrEmpty(this.tabPanelExtraAttachmentResult.Attributes["class"]))
                                 {
@@ -195,12 +209,11 @@ namespace WebReport
                                     this.tabPanelExtraAttachmentResult.Attributes.Add("class", "active");
                                     active = false;
                                 }
-                                //this.rowResultPDFExtraAttachmentLabel.Style["display"] = "block";
                             }
                         }
                         if (flag)
                         {
-                            Session["ExtraAttachmentUri"] = arrExtraAttachment;                           
+                            Session["ExtraAttachmentUri"] = arrExtraAttachment;
                         }
                         if (resultSummary.Results.Length >= 2)
                         {
@@ -230,7 +243,11 @@ namespace WebReport
             try
             {
                 WebClient webClient = new WebClient();
-                webClient.Credentials = CredentialCache.DefaultCredentials;
+                //webClient.Credentials = CredentialCache.DefaultCredentials;
+                string login = "", pass = "";
+                login = ConfigurationManager.AppSettings["loginForService"];
+                pass = ConfigurationManager.AppSettings["passwordForService"];
+                webClient.Credentials = new NetworkCredential(login, pass);
                 byte[] arr = webClient.DownloadData(Session["SilabMainResultUri"].ToString());
 
                 Response.Clear();
@@ -249,25 +266,6 @@ namespace WebReport
             {
                 logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
             }
-            #region alternative
-            /*
-            string filename = @"C:\SynevoResults" + Session["barcode"] + ".pdf";
-            WebClient webClient = new WebClient();
-            webClient.Credentials = CredentialCache.DefaultCredentials;
-            webClient.DownloadFile(Session["SilabMainResultUri"].ToString(), filename);
-            FileInfo fileInfo = new FileInfo(filename);
-            if (fileInfo.Exists)
-            {
-                Response.Clear();
-                Response.AppendHeader("Content-Disposition", "attachment; filename=SynevoResults" + Session["barcode"] + ".pdf");
-                Response.ContentType = "application/pdf";
-                Response.Flush();
-                Response.WriteFile(fileInfo.FullName);
-                Response.End();
-            }
-            fileInfo.Delete();
-            */
-            #endregion
         }
 
         protected void MicroExportButton_Click(object sender, ImageClickEventArgs e)
@@ -275,7 +273,10 @@ namespace WebReport
             try
             {
                 WebClient webClient = new WebClient();
-                webClient.Credentials = CredentialCache.DefaultCredentials;
+                string login = "", pass = "";
+                login = ConfigurationManager.AppSettings["loginForService"];
+                pass = ConfigurationManager.AppSettings["passwordForService"];
+                webClient.Credentials = new NetworkCredential(login, pass);
                 byte[] arr = webClient.DownloadData(Session["SilabMicroResultUri"].ToString());
 
                 Response.Clear();
@@ -300,7 +301,10 @@ namespace WebReport
         {
             ArrayList arrExtraAttachment = (ArrayList)Session["ExtraAttachmentUri"];
             WebClient webClient = new WebClient();
-            webClient.Credentials = CredentialCache.DefaultCredentials;
+            string login = "", pass = "";
+            login = ConfigurationManager.AppSettings["loginForService"];
+            pass = ConfigurationManager.AppSettings["passwordForService"];
+            webClient.Credentials = new NetworkCredential(login, pass);
             if (arrExtraAttachment.Count == 1) // если один файл
             {
                 try
@@ -330,7 +334,7 @@ namespace WebReport
                 string zipFileName = null;
                 try
                 {
-                    DirectoryInfo directoryinfo = Directory.CreateDirectory(@"C:\" + DateTime.Now.ToString("dd MMMM yyyy") + " SynevoAddResults" + Session["barcode"]);
+                    DirectoryInfo directoryinfo = Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + DateTime.Now.ToString("dd MMMM yyyy") + " SynevoAddResults" + Session["barcode"]);
 
                     string fileNameAdd = "SynevoAddResults" + Session["barcode"] + "_";
                     zipFileName = directoryinfo.FullName + ".zip";
@@ -375,10 +379,13 @@ namespace WebReport
             string zipFileName = null;
             try
             {
-                DirectoryInfo directoryinfo = Directory.CreateDirectory(@"C:\" + DateTime.Now.ToString("dd MMMM yyyy") + " SynevoResults" + Session["barcode"]);
+                DirectoryInfo directoryinfo = Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + DateTime.Now.ToString("dd MMMM yyyy") + " SynevoResults" + Session["barcode"]);
 
                 WebClient webClient = new WebClient();
-                webClient.Credentials = CredentialCache.DefaultCredentials;
+                string login = "", pass = "";
+                login = ConfigurationManager.AppSettings["loginForService"];
+                pass = ConfigurationManager.AppSettings["passwordForService"];
+                webClient.Credentials = new NetworkCredential(login, pass);
 
                 string fileNameMain = "SynevoResults" + Session["barcode"] + ".pdf";
                 string fileNameMicro = "SynevoResults" + Session["barcode"] + "_Micro.pdf";
@@ -431,94 +438,13 @@ namespace WebReport
             }                
         }
 
-        public void GetFileSilabMainResult()
+        protected void BtnClearSession_Click(object sender, ImageClickEventArgs e)
         {
-            try
-            {
-                WebClient webClient = new WebClient();
-                webClient.Credentials = CredentialCache.DefaultCredentials;
-                string fileNameMain = "SynevoResults" + Session["barcode"] + ".pdf";
-                webClient.DownloadFile(Session["SilabMainResultUri"].ToString(), Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileNameMain));
-                Session["SilabMainResultFile"] = fileNameMain;
-            }            
-             catch (System.Threading.ThreadAbortException ex)
-            {
-                logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
-            }
-            catch (Exception ex)
-            {                
-                this.ErrorDownloadMainResultLabel.Text= GetLocalResourceObject("ErrorDownloadResultLabel").ToString();
-                logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
-            }
-        }
-
-        public void GetFileSilabMicroResult()
-        {
-            try
-            {
-                WebClient webClient = new WebClient();
-                webClient.Credentials = CredentialCache.DefaultCredentials;
-                string fileNameMicro = "SynevoResults" + Session["barcode"] + "_Micro.pdf";
-                webClient.DownloadFile(Session["SilabMicroResultUri"].ToString(), Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileNameMicro));
-                Session["SilabMіcroResultFile"] = fileNameMicro;                
-            }           
-             catch (System.Threading.ThreadAbortException ex)
-            {
-                logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
-            }
-            catch (Exception ex)
-            { 
-                this.ErrorDownloadMicroResultLabel.Text = GetLocalResourceObject("ErrorDownloadResultLabel").ToString();
-                logger.Warn(ex.Message + " | Row: " + ex.StackTrace.Substring(ex.StackTrace.LastIndexOf(' ')) + " | CodeForWebFFSOrder: " + WebAccessCodeTextBox.Text);
-            }
-        }
-
-        public void DeleteFileAndClearSession()
-        {
-            if (Session["SilabMainResultFile"] != null)
-            {
-                if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Session["SilabMainResultFile"].ToString())))
-                {
-                    File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Session["SilabMainResultFile"].ToString()));
-                }
-            }
-            if (Session["SilabMicroResultFile"] != null)
-            {
-                if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Session["SilabMicroResultFile"].ToString())))
-                {
-                    File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Session["SilabMicroResultFile"].ToString()));
-                }
-            }
+            this.WebAccessCodeTextBox.Text = null;
+            this.ErrorLabel.Text = null;
+            this.StatusLabel.Text = null;
+            this.PanelResult.Visible = false;
             Session.RemoveAll();
-        }
-
-        [System.Web.Services.WebMethod]
-        public static string GetSilabMainResult()
-        {
-            try
-            {
-                return HttpContext.Current.Session["SilabMainResultFile"].ToString();
-            }
-            catch (Exception ex)
-            {
-                //результаты невозможно выкачать с сервиса
-            }
-            return null;  
-        }
-
-        [System.Web.Services.WebMethod]
-        public static string GetSilabMicroResult()
-        {
-            try
-            {
-                return HttpContext.Current.Session["SilabMіcroResultFile"].ToString();
-            }
-            catch (Exception ex)
-            {
-                //результаты невозможно выкачать с сервиса
-            }
-            return null;
-
         }
     }
 }

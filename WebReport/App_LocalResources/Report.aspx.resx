@@ -130,13 +130,16 @@
     <value>Сохранить как PDF</value>
   </data>
   <data name="ErrorDownloadResultLabel" xml:space="preserve">
-    <value>Результаты отсутствуют</value>
+    <value>Результаты по заказу отсутствуют.</value>
   </data>
   <data name="ErrorLabelText" xml:space="preserve">
-    <value>Введите код для &lt;br&gt; доступа</value>
+    <value>Введите код &lt;br&gt; доступа</value>
   </data>
   <data name="ExtraAttachmentExportButton" xml:space="preserve">
     <value>Сохранить</value>
+  </data>
+  <data name="ImageButtonClearSession" xml:space="preserve">
+    <value>Закрыть сессию</value>
   </data>
   <data name="ImageButtonFirstPage" xml:space="preserve">
     <value>Перейти к первой странице</value>
@@ -166,16 +169,16 @@
     <value>Для просмотра и сохранения результатов&lt;br&gt;&lt;span&gt;введите код в поле и нажмите кнопку:&lt;/span&gt;</value>
   </data>
   <data name="ResultAllText" xml:space="preserve">
-    <value>Скачать все результаты в виде zip-файла:</value>
+    <value>Скачать все результаты в виде архива zip:</value>
   </data>
   <data name="ResultPDFExtraAttachmentLabelText" xml:space="preserve">
-    <value>Дополнительные</value>
+    <value>Дополнительные результаты</value>
   </data>
   <data name="ResultPDFLabelText" xml:space="preserve">
-    <value>Результаты заказа</value>
+    <value>Основной результат</value>
   </data>
   <data name="ResultPDFMicroLabelText" xml:space="preserve">
-    <value>Микробиология</value>
+    <value>Результат микробиологии</value>
   </data>
   <data name="StatusLabelExeption" xml:space="preserve">
     <value>Отсутствует связь с лабораторией, попробуйте позже</value>
@@ -184,7 +187,7 @@
     <value>Ваш заказ не готов, показаны предварительные результаты.</value>
   </data>
   <data name="StatusLabelNotResult" xml:space="preserve">
-    <value>По вашему заказу нет результатов</value>
+    <value>Результаты по заказу отсутствуют.</value>
   </data>
   <data name="StatusLabelOrderIsNotFound" xml:space="preserve">
     <value>Заказ не найден. Проверьте введенный код и попробуйте еще раз. Обратите внимание, что все буквы должны быть латинскими, а строчные и прописные буквы различаются</value>
@@ -193,9 +196,9 @@
     <value>По данному заказу результаты отсутствуют. Для уточнения обратитесь в контакт центр или пункт Cинэво</value>
   </data>
   <data name="StatusLabelReady" xml:space="preserve">
-    <value>Ваш заказ готов</value>
+    <value>Ваш заказ готов.</value>
   </data>
   <data name="WarningMessage" xml:space="preserve">
-    <value>Результаты все равно на украинском</value>
+    <value>Результаты на украинском языке.</value>
   </data>
 </root>

@@ -60,6 +60,14 @@
 	 float:right;
 	 padding-right:30px;
  }
+ #ImageButtonClearSession
+ {
+     padding-top:130px;
+	 float:right;
+     margin-right:-70px;
+     cursor: pointer;
+	 outline: none;
+ }
  #HyperLink1{
 	 font-size:13px;
 	 font-family:Arial;

@@ -130,13 +130,16 @@
     <value>Save as PDF</value>
   </data>
   <data name="ErrorDownloadResultLabel" xml:space="preserve">
-    <value>There are no results</value>
+    <value>There are no results for the order.</value>
   </data>
   <data name="ErrorLabelText" xml:space="preserve">
-    <value>Enter a code&lt;br&gt; for access</value>
+    <value>Enter access code</value>
   </data>
   <data name="ExtraAttachmentExportButton" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="ImageButtonClearSession" xml:space="preserve">
+    <value>Close session</value>
   </data>
   <data name="ImageButtonFirstPage" xml:space="preserve">
     <value>First Page</value>
@@ -157,45 +160,45 @@
     <value>Zoom Out</value>
   </data>
   <data name="LabelCode" xml:space="preserve">
-    <value>&lt;strong&gt;Code for access&lt;/strong&gt;&lt;br&gt;&lt;span&gt;to&amp;nbsp;web results:&lt;/span&gt;</value>
+    <value>&lt;strong&gt;Access code&lt;/strong&gt;&lt;br&gt;&lt;span&gt;for&amp;nbsp;web results:&lt;/span&gt;</value>
   </data>
   <data name="LabelExample" xml:space="preserve">
-    <value>(An example in drawing)</value>
+    <value>(As shown on picture)</value>
   </data>
   <data name="LabelHeader" xml:space="preserve">
-    <value>For viewing and preservation of results &lt;br&gt;&lt;span&gt; enter a code into a field and press the button:&lt;/span&gt;</value>
+    <value>To view and download results enter access code&lt;br&gt;&lt;span&gt;into the field and press button:&lt;/span&gt;</value>
   </data>
   <data name="ResultAllText" xml:space="preserve">
-    <value>To download all results in the form of the zip-file:</value>
+    <value>Download all results as zip archive</value>
   </data>
   <data name="ResultPDFExtraAttachmentLabelText" xml:space="preserve">
-    <value>Аdditional</value>
+    <value>Аdditional results</value>
   </data>
   <data name="ResultPDFLabelText" xml:space="preserve">
-    <value>Results order</value>
+    <value>Main result</value>
   </data>
   <data name="ResultPDFMicroLabelText" xml:space="preserve">
-    <value>Microbiology</value>
+    <value>Microbiology result</value>
   </data>
   <data name="StatusLabelExeption" xml:space="preserve">
-    <value>There is no communication with laboratory, try later</value>
+    <value>Cannot connect to laboratory, please try later.</value>
   </data>
   <data name="StatusLabelNotReady" xml:space="preserve">
-    <value>Your order is ready, show preliminary results</value>
+    <value>Your order is not ready. Preliminary results are shown.</value>
   </data>
   <data name="StatusLabelNotResult" xml:space="preserve">
-    <value>By your order there are no results</value>
+    <value>There are no results for the order.</value>
   </data>
   <data name="StatusLabelOrderIsNotFound" xml:space="preserve">
-    <value>The order isn't found. Check the entered code and try once again. Pay attention that all letters have to be Latin, and lower case and capital letters differ</value>
+    <value>The order was not found. Check the entered code and try again. Please note that all letters are Latin, and the code is case sensitive.</value>
   </data>
   <data name="StatusLabelPerezabor" xml:space="preserve">
-    <value>By this order results are absent. For specification address to contact center or point Synevo</value>
+    <value>There are no results for the order. Please contact Synevo hotline or blood drawing point for details.</value>
   </data>
   <data name="StatusLabelReady" xml:space="preserve">
     <value>Your order is ready</value>
   </data>
   <data name="WarningMessage" xml:space="preserve">
-    <value>Results all the same in Ukrainian</value>
+    <value>Results are in Ukranian language.</value>
   </data>
 </root>
