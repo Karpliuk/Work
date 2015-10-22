@@ -68,6 +68,19 @@
      cursor: pointer;
 	 outline: none;
  }
+ #ImageButtonPrev, #ImageButtonNext, #ImageButtonFirstPage, #ImageButtonLastPage, #ImageButtonZoomIn, #ImageButtonZoomOut,
+ #ImageButtonPrevMicro, #ImageButtonNextMicro, #ImageButtonFirstPageMicro, #ImageButtonLastPageMicro, #ImageButtonZoomInMicro, #ImageButtonZoomOutMicro, 
+ #ImageButtonPrevExtraAttachment, #ImageButtonNextExtraAttachment, #ImageButtonFirstPageExtraAttachment, #ImageButtonLastPageExtraAttachment, #ImageButtonZoomInExtraAttachment, #ImageButtonZoomOutExtraAttachment
+ {
+     cursor: pointer;
+	 outline: none;
+ }
+ #ImageGif
+{
+     display:block;
+     margin:0 auto;
+}
+
  #HyperLink1{
 	 font-size:13px;
 	 font-family:Arial;

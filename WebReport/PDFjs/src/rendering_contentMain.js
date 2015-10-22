@@ -99,7 +99,7 @@ document.getElementById('ImageButtonLastPage').addEventListener('click', onLastP
     * Displays zoomIn.
     */
 function onZoomIn() {
-    scale += 0.02
+    scale += 0.06
     queueRenderPage(pageNum);
 }
 document.getElementById('ImageButtonZoomIn').addEventListener('click', onZoomIn);
@@ -107,7 +107,7 @@ document.getElementById('ImageButtonZoomIn').addEventListener('click', onZoomIn)
 * Displays zoomOut.
 */
 function onZoomOut() {
-    scale -= 0.02
+    scale -= 0.06
     queueRenderPage(pageNum);
 }
 document.getElementById('ImageButtonZoomOut').addEventListener('click', onZoomOut);
@@ -130,7 +130,7 @@ function GetMainResult() {
 
                 // Initial/first page rendering
                 renderPage(pageNum);
-            });
+            });           
 }
 
 GetMainResult();

@@ -99,7 +99,7 @@ document.getElementById('ImageButtonLastPageExtraAttachment').addEventListener('
     * Displays zoomIn.
     */
 function onZoomInExtraAttachment() {
-    scaleExtraAttachment += 0.02
+    scaleExtraAttachment += 0.06
     queuerenderPageExtraAttachment(pageNumExtraAttachment);
 }
 document.getElementById('ImageButtonZoomInExtraAttachment').addEventListener('click', onZoomInExtraAttachment);
@@ -107,7 +107,7 @@ document.getElementById('ImageButtonZoomInExtraAttachment').addEventListener('cl
 * Displays zoomOut.
 */
 function onZoomOutExtraAttachment() {
-    scaleExtraAttachment -= 0.02
+    scaleExtraAttachment -= 0.06
     queuerenderPageExtraAttachment(pageNumExtraAttachment);
 }
 document.getElementById('ImageButtonZoomOutExtraAttachment').addEventListener('click', onZoomOutExtraAttachment);

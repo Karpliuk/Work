@@ -13,6 +13,15 @@ namespace WebReport {
     public partial class Report {
         
         /// <summary>
+        /// myLiteral элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal myLiteral;
+        
+        /// <summary>
         /// form1 элемент управления.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,15 @@ namespace WebReport {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel PanelResult;
+        
+        /// <summary>
+        /// ImageGif элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImageGif;
         
         /// <summary>
         /// tabPanelMainResult элемент управления.

@@ -5,7 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Результаты исследований</title>
+    <title>
+        <asp:Literal ID="myLiteral" runat="server" Text="<%$ Resources:Title %>"></asp:Literal>
+    </title>
     <%-- include Bootstrap --%>        
     <script src="../Scripts/jquery-1.9.1.js"></script>
     <script src="../Scripts/jquery-ui.js"></script>
@@ -88,7 +90,7 @@
 
       <div class="row" style="padding-top:10px;">
            <div class="col-xs-" style="padding-top:0px;
-                 text-align:justify;
+                 text-align:left;
                  max-width:270px; 
                  min-width:270px;
                  margin:auto;">
@@ -96,9 +98,12 @@
            </div>
       </div>
 
+<%--     <iframe src="SynevoResults15348104_Micro.pdf" width="800px" height="600px" />  --%>
+
      <asp:Panel ID="PanelResult" runat="server" BackColor="White" BorderStyle="None" 
                 HorizontalAlign="Left" Width="100%" Visible="False">   
 
+         <asp:Image ID="ImageGif" runat="server" ImageUrl="img/712.gif"/>
 
           <ul class="nav nav-tabs" style="margin-top:30px">
               <li id="tabPanelMainResult" runat="server"> 
@@ -112,8 +117,6 @@
               </li>
            </ul>     
          <br />
-
-<%--         <asp:Image ID="Image2" runat="server" ImageUrl="img/ajax-loader.gif"  /><br />--%>
 
          <div class="row" style="text-align:center;">    
           <div class="tab-content">
@@ -151,7 +154,7 @@
                   ToolTip="<%$ Resources:ButtonToolTip %>" />
                  <br /> 
                  <asp:Label ID="ErrorDownloadMainResultLabel" runat="server"></asp:Label>                
-                 <canvas id="canvasMain" width="0" height="0"/>                             
+                 <canvas id="canvasMain" width="0" height="0"/>                           
                  <script src="../PDFjs/src/rendering_contentMain.js"></script>                
               </div>
 
@@ -243,9 +246,12 @@
                  ImageUrl="img/toolbarButton-download-all.png" onclick="ResultAllExportButton_Click" 
                  ToolTip="<%$ Resources:ButtonDownloadToolTip %>" />&nbsp
           </div>        
-      </div>    
-         
+      </div>  
+        
         </asp:Panel><br />
+         <script>
+             setTimeout('document.getElementById("ImageGif").style.display = "none"',2000);
+         </script> 
     </div>
    </form>
 </body>

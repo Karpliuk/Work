@@ -95,7 +95,7 @@ document.getElementById('ImageButtonLastPageMicro').addEventListener('click', on
     * Displays zoomIn.
     */
 function onZoomInMicro() {
-    scaleMicro += 0.02
+    scaleMicro += 0.06
     queuerenderPageMicro(pageNumMicro);
 }
 document.getElementById('ImageButtonZoomInMicro').addEventListener('click', onZoomInMicro);
@@ -103,7 +103,7 @@ document.getElementById('ImageButtonZoomInMicro').addEventListener('click', onZo
 * Displays zoomOut.
 */
 function onZoomOutMicro() {
-    scaleMicro -= 0.02
+    scaleMicro -= 0.06
     queuerenderPageMicro(pageNumMicro);
 }
 document.getElementById('ImageButtonZoomOutMicro').addEventListener('click', onZoomOutMicro);
